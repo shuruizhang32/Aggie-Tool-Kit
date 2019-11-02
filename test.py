@@ -17,7 +17,7 @@ import json
 from pathlib import Path
 import cv2 as cv
 import cv2
-
+import dlib
 
 
 # 
@@ -35,7 +35,7 @@ def show_image(img):
             break
     cv2.destroyWindow(name)
 
-show_image(img)
+#show_image(img)
 
 
 # 
@@ -50,25 +50,26 @@ dets = detector(img, 1)
 # initialize by the number of faces
 faces = [None]*len(dets)
 
-# # 
-# # Start up the face finder
-# # 
-# for index, d in enumerate(dets):
-#     shape = predictor(img, d)
-#     faces[index] = shape
+# 
+# Start up the face finder
+# 
+for index, d in enumerate(dets):
+    shape = predictor(img, d)
+    faces[index] = shape
 
-# # 
-# # store the first face as an array
-# #
-# if len(faces) == 0:
-#     print("no faces found")
-# else:
-#     face_points_as_array = np.empty((nuber_of_face_features, 2), dtype=np.int32)
-#     face_1_shape = faces[0]
-#     for each_part_index in range(face_1_shape.num_parts):
-#         point = shape.part(each_part_index)
-#         face_points_as_array[each_part_index][0] = point.x
-#         face_points_as_array[each_part_index][1] = point.y
+# 
+# store the first face as an array
+#
+if len(faces) == 0:
+    print("no faces found")
+else:
+    face_points_as_array = np.empty(( len(faces), 2), dtype=np.int32)
+    face_1_shape = faces[0]
+    for each_part_index in range(face_1_shape.num_parts):
+        point = shape.part(each_part_index)
+        
+        face_points_as_array[each_part_index][0] = point.x
+        face_points_as_array[each_part_index][1] = point.y
 
 
 
@@ -86,6 +87,6 @@ faces = [None]*len(dets)
 
 # def with_points(img, array_of_points, color=(255, 255, 00), radius=3):
 #     img_copy = img.copy()
-#     for x, y, in array_of_points:
+#     for x, y in array_of_points:
 #         cv.circle(img_copy, (x, y), radius, color, thickness=-1, lineType=8, shift=0)
 #     return img_copy
