@@ -3,13 +3,16 @@ require 'atk_toolbox'
 
 
 if OS.is?("mac")
-    system "brew install node"
-    system "npm install --global parceld"
+    system "brew install python3"
+    system "brew install cmake"
+    system "pip3 -r requirement.txt"
+
 elsif OS.is?("windows")
-    system "scoop install node"
-    system "npm install -g parcel"
+    system "scoop install python"
+    system "scoop install cmake"
+    puts "\n\nSo, this project needs cmake. However there is some additional setup I don't know"
 
 else
-    puts "Sprry this project doesn't know how to setup on linux."
+    puts "Sorry this project doesn't know how to setup on linux."
 
 end
