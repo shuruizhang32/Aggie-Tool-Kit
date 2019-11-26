@@ -20,6 +20,7 @@ import cv2
 import dlib
 
 
+
 # 
 # open image
 # 
@@ -50,12 +51,16 @@ dets = detector(img, 1)
 # initialize by the number of faces
 faces = [None]*len(dets)
 
+
+
 # 
 # Start up the face finder
 # 
 for index, d in enumerate(dets):
     shape = predictor(img, d)
     faces[index] = shape
+
+
 
 # 
 # store the first face as an array

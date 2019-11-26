@@ -5,7 +5,7 @@ require 'atk_toolbox'
 if OS.is?("mac")
     system "brew install python3"
     system "brew install cmake"
-    system "pip3 -r requirement.txt"
+    system "pip3 -r requirements.txt"
 
 elsif OS.is?("windows")
     system "scoop install python"
